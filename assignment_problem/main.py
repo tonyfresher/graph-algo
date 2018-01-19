@@ -1,6 +1,6 @@
 from functools import reduce
 from copy import deepcopy
-from hopcroft_karp import BipartiteGraph
+from modified_ford_fulkerson import BipartiteGraph
 import math
 
 
@@ -35,7 +35,7 @@ class HungarianAlgorithm:
             result = self._check_full_assignment(cost_matrix, matching)
             if result:
                 return result
-        
+
 
     @staticmethod
     def _reduce_matrix_rows(matrix):
@@ -142,7 +142,7 @@ class HungarianAlgorithm:
         for row in modified:
             if len(row) < max_len:
                 row.extend([pad_value for _ in range(max_len - len(row))])
-        
+
         if len(modified) < max_len:
             modified.extend([[pad_value for _ in range(max_len)] for _ in range(max_len - len(modified))])
 
@@ -164,6 +164,6 @@ if __name__ == '__main__':
     ]
 
     matching, weight = HungarianAlgorithm.assign(matrix)
-    
+
     print(matching)
     print(weight)
